@@ -28,6 +28,7 @@ if let range = buffer.range(of: delimData) {
     buffer.removeSubrange(0..<range.upperBound)
 }
 
+//ArrayからData,DataからArrayへの変換
 //Array To Data
 var arr: [UInt32] = [32, 4, UInt32.max]
 let data = Data(buffer: UnsafeBufferPointer(start: &arr, count: arr.count))
