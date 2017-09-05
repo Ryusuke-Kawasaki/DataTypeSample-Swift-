@@ -28,3 +28,13 @@ if let range = buffer.range(of: delimData) {
     buffer.removeSubrange(0..<range.upperBound)
 }
 
+//Array To Data
+var arr: [UInt32] = [32, 4, UInt32.max]
+let data = Data(buffer: UnsafeBufferPointer(start: &arr, count: arr.count))
+print(data) // <20000000 04000000 ffffffff>
+
+//Data To Array
+let arr2 = data.withUnsafeBytes {
+    Array(UnsafeBufferPointer<UInt32>(start: $0, count: data.count/MemoryLayout<UInt32>.size))
+}
+print(arr2) // [32, 4, 4294967295]
